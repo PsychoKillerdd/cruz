@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruz Andina - Chakana Reutilizable</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff; /* Fondo blanco */
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(13, 50px); /* 13 columnas, ajusta el tamaño */
+            grid-template-rows: repeat(16, 50px);    /* 16 filas, ajusta el tamaño */
+            gap: 0;
+            background-color: #ffffff;
+        }
+
+        .grid-item {
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff; /* Fondo blanco por defecto */
+        }
+
+        .black {
+            background-color: #000000; /* Color negro para la figura */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Aquí se generarán las cruces andinas -->
+    <div id="cruces-container"></div>
+
+    <script>
+        function createCruzAndina() {
+            // Estructura de la cruz andina como un array bidimensional
+            const cruzAndina = [
+                /* Fila 1 a 16 */
+                [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+                [0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+                [0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0],
+                [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
+                [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
+                [0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0],
+                [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+                [0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0],
+                [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+                [0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+            ];
+
+            // Crear el contenedor de la cuadrícula
+            const gridContainer = document.createElement('div');
+            gridContainer.classList.add('grid-container');
+
+            // Añadir celdas a la cuadrícula
+            for (let i = 0; i < cruzAndina.length; i++) {
+                for (let j = 0; j < cruzAndina[i].length; j++) {
+                    const gridItem = document.createElement('div');
+                    gridItem.classList.add('grid-item');
+                    if (cruzAndina[i][j] === 1) {
+                        gridItem.classList.add('black');
+                    }
+                    gridContainer.appendChild(gridItem);
+                }
+            }
+
+            return gridContainer;
+        }
+
+        // Función para añadir varias cruces andinas
+        function renderMultipleCrucesAndinas(numCruces) {
+            const crucesContainer = document.getElementById('cruces-container');
+
+            for (let i = 0; i < numCruces; i++) {
+                const cruz = createCruzAndina();
+                crucesContainer.appendChild(cruz);
+            }
+        }
+
+        // Renderizar 3 cruces andinas
+        renderMultipleCrucesAndinas(3);
+    </script>
+</body>
+</html>
